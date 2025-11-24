@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProjectCardComponent } from '../project-card/project-card.component';
 import { ExperienceItemComponent } from '../experience-item/experience-item.component';
 import { LanguageService } from '../../services/language.service';
+import { GoogleAnalyticsService } from '../../services/google-analytics.service';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
@@ -107,20 +108,23 @@ export class HomeComponent implements AfterViewInit {
       techs: ['Oracle APEX', 'PL/SQL', 'SQL'],
       link: '#'
     },
-{
-  title: { en: 'Microservices Backend', es: 'Backend con Microservicios' },
-  description: {
-    en: 'Microservices backend implemented with Spring Boot for managing supermarket tickets. Features asynchronous communication with RabbitMQ, JWT authentication with RS256, MongoDB for notifications, MariaDB for relational data, API Gateway, and Docker deployment. Includes modular services for users, tickets, notifications, and supermarkets with secure and scalable architecture.',
-    es: 'Backend con microservicios en Spring Boot para la gestión de tickets de supermercados. Implementa comunicación asíncrona con RabbitMQ, autenticación JWT con RS256, MongoDB para notificaciones, MariaDB para datos relacionales, API Gateway y despliegue con Docker. Incluye servicios modulares para usuarios, tickets, notificaciones y supermercados con arquitectura segura y escalable.'
-  },
-  image: 'assets/DWESMicroservices2.jpg',
-  techs: ['Spring Boot', 'Java', 'RabbitMQ', 'JWT', 'Docker', 'API Gateway', 'MariaDB', 'MongoDB', 'Microservices', 'REST API'],
-  link: 'https://github.com/JosMigGarLop/MicroserviciosRabbitMQAPICloudGateway'
-}
+    {
+      title: { en: 'Microservices Backend', es: 'Backend con Microservicios' },
+      description: {
+        en: 'Microservices backend implemented with Spring Boot for managing supermarket tickets. Features asynchronous communication with RabbitMQ, JWT authentication with RS256, MongoDB for notifications, MariaDB for relational data, API Gateway, and Docker deployment. Includes modular services for users, tickets, notifications, and supermarkets with secure and scalable architecture.',
+        es: 'Backend con microservicios en Spring Boot para la gestión de tickets de supermercados. Implementa comunicación asíncrona con RabbitMQ, autenticación JWT con RS256, MongoDB para notificaciones, MariaDB para datos relacionales, API Gateway y despliegue con Docker. Incluye servicios modulares para usuarios, tickets, notificaciones y supermercados con arquitectura segura y escalable.'
+      },
+      image: 'assets/DWESMicroservices2.jpg',
+      techs: ['Spring Boot', 'Java', 'RabbitMQ', 'JWT', 'Docker', 'API Gateway', 'MariaDB', 'MongoDB', 'Microservices', 'REST API'],
+      link: 'https://github.com/JosMigGarLop/MicroserviciosRabbitMQAPICloudGateway'
+    }
   ];
 
-  constructor(public languageService: LanguageService) {
-    // Comprobar idioma guardado y actualizar textos
+  constructor(
+    public languageService: LanguageService,
+    private ga: GoogleAnalyticsService
+  ) {
+    // Inicializar idioma
     this.currentLang = this.languageService.getLanguage() as 'en' | 'es';
     this.updateLanguage(this.currentLang);
     this.updateSidebarText(this.currentLang);
@@ -134,12 +138,19 @@ export class HomeComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // Inicializar sección activa tras renderizado
     setTimeout(() => this.onScroll(), 100);
   }
 
+  /** MÉTODO PARA DESCARGAR CV CON GOOGLE ANALYTICS */
+  downloadCV() {
+    this.ga.event('download_cv', { method: 'PDF' });
+    setTimeout(() => {
+      window.open('assets/JoseMiguelGarciaLopez_CV_DesarrolladorWeb.pdf', '_blank');
+    }, 100);
+    return false;
+  }
+
   updateLanguage(lang: 'en' | 'es') {
-    // Actualizar experiencias y proyectos según idioma
     this.experiencesDisplayed = this.rawExperiences.map(e => ({
       period: e.period[lang],
       role: e.role[lang],
@@ -158,14 +169,12 @@ export class HomeComponent implements AfterViewInit {
   }
 
   updateSidebarText(lang: 'en' | 'es') {
-    // Actualizar textos del sidebar según idioma
     this.sidebarRole = lang === 'es' ? 'Desarrollador Full Stack' : 'Full Stack Developer';
     this.sidebarDescription = lang === 'es'
       ? 'Diseño y desarrollo aplicaciones web completas y escalables.'
       : 'I design and develop complete, scalable web applications.';
   }
 
-  // CLICK → SCROLL suave a la sección
   scrollToSection(sectionId: string) {
     if (sectionId === 'about') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -184,7 +193,6 @@ export class HomeComponent implements AfterViewInit {
     return this.activeSection === sectionKey || this.hoveredSection === sectionKey;
   }
 
-  // Detectar sección visible al hacer scroll
   @HostListener('window:scroll', [])
   onScroll() {
     const viewportCenter = window.innerHeight / 2;

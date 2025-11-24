@@ -19,9 +19,7 @@ export class AppComponent {
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
         // Envía la ruta a Google Analytics
-        gtag('config', 'G-514114936', {
-          page_path: event.urlAfterRedirects
-        });
+gtag('config', 'G-17ZNB1398Z', { page_path: event.urlAfterRedirects });
       });
   }
 }

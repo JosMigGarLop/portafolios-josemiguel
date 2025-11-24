@@ -176,18 +176,18 @@
         </app-experience-item>
       </div>
 
-      <!-- Descargar CV -->
-      <div class="mt-8">
-        <a href="assets/JoseMiguelGarciaLopez_CV_DesarrolladorWeb.pdf" target="_blank"
-           class="inline-flex items-center font-semibold text-gray-300 transition-colors duration-200 group hover:text-[#4AB5BD]">
-          {{ currentLang === 'es' ? 'Descargar CV completo' : 'Download full CV' }}
-          <span class="inline-block transform transition-transform duration-300 group-hover:translate-x-2 ml-1">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0L13.5 19.5M21 12H3" />
-            </svg>
-          </span>
-        </a>
-      </div>
+<!-- Descargar CV -->
+<div class="mt-8">
+  <a href="#" (click)="downloadCV()"
+     class="inline-flex items-center font-semibold text-gray-300 transition-colors duration-200 group hover:text-[#4AB5BD]">
+    {{ currentLang === 'es' ? 'Descargar CV completo' : 'Download full CV' }}
+    <span class="inline-block transform transition-transform duration-300 group-hover:translate-x-2 ml-1">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0L13.5 19.5M21 12H3" />
+      </svg>
+    </span>
+  </a>
+</div>
     </section>
 
     <!-- ==================== PROJECTS ==================== -->
