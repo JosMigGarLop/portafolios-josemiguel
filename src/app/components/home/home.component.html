@@ -1,0 +1,237 @@
+<div class="flex flex-col md:flex-row min-h-screen bg-[#111a34] text-gray-300 font-sans">
+
+  <!-- ==================== SIDEBAR ==================== -->
+  <aside
+    class="w-full md:w-[40%] md:h-screen md:sticky md:top-0 flex flex-col items-center px-6 sm:px-16 py-12 md:py-24 relative max-w-[480px] mx-auto">
+
+    <!-- Botones superiores: selección de idioma -->
+    <div class="fixed top-4 right-4 flex items-center gap-3 z-50">
+      <select [(ngModel)]="currentLang" (ngModelChange)="languageService.setLanguage($event)"
+              class="bg-gray-700/40 px-2 py-1 rounded text-white">
+        <option value="en">EN</option>
+        <option value="es">ES</option>
+      </select>
+    </div>
+
+    <!-- Contenido principal del sidebar -->
+    <div class="flex flex-col items-center text-center w-full">
+
+      <!-- Foto de perfil -->
+      <div class="mb-6">
+        <img src="assets/FotoPerfil.jpg" class="w-48 h-48 rounded-xl object-cover">
+      </div>
+
+      <!-- Nombre completo -->
+      <h1 class="font-elegant text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-gray-100 mb-2 sm:mb-4">
+        {{ sidebarTitle }}
+      </h1>
+
+      <!-- Rol / Profesión -->
+      <p class="font-sans text-lg sm:text-xl text-gray-400">
+        {{ sidebarRole }}
+      </p>
+
+      <!-- Descripción -->
+      <p class="font-sans text-sm sm:text-md mt-4 text-gray-300 leading-relaxed w-full sm:w-[80%]">
+        {{ sidebarDescription }}
+      </p>
+
+      <!-- ==================== NAV SECTIONS ==================== -->
+      <nav class="mt-10 sm:mt-14 space-y-5">
+        <a *ngFor="let section of sections"
+           (click)="scrollToSection(section.key)"
+           (mouseenter)="hoveredSection = section.key"
+           (mouseleave)="hoveredSection = null"
+           class="flex items-center gap-6 cursor-pointer select-none">
+
+          <!-- Línea activa/hover -->
+          <span class="block h-0.5 rounded-full transition-all duration-500"
+                [class.w-10]="!isSectionActive(section.key) && hoveredSection !== section.key"
+                [class.w-20]="isSectionActive(section.key) || hoveredSection === section.key"
+                [class.bg-gray-600]="!isSectionActive(section.key) && hoveredSection !== section.key"
+                [class.bg-white]="isSectionActive(section.key) || hoveredSection === section.key">
+          </span>
+
+          <!-- Texto de la sección -->
+          <span class="uppercase text-xs tracking-widest font-medium transition-colors duration-300"
+                [class.text-gray-600]="!isSectionActive(section.key) && hoveredSection !== section.key"
+                [class.text-white]="isSectionActive(section.key) || hoveredSection === section.key">
+            {{ section.label[currentLang] }}
+          </span>
+        </a>
+      </nav>
+
+    </div>
+
+<!-- ==================== SOCIAL ICONS ==================== -->
+
+<!-- Móvil (centrados debajo del texto) -->
+<div class="mt-8 md:hidden flex gap-6 justify-center text-2xl sm:text-3xl text-gray-500">
+  <a target="_blank" href="https://github.com/JosMigGarLop" class="hover:text-white transition-colors">
+    <i class="fab fa-github"></i>
+  </a>
+  <a target="_blank" href="https://www.linkedin.com/in/josmigarlop/" class="hover:text-white transition-colors">
+    <i class="fab fa-linkedin"></i>
+  </a>
+  <a target="_blank" href="https://codepen.io/JosMigGarLop" class="hover:text-white transition-colors">
+    <i class="fab fa-codepen"></i>
+  </a>
+  <a href="mailto:josmgarlop@gmail.com" class="hover:text-white transition-colors">
+    <i class="fas fa-envelope"></i>
+  </a>
+</div>
+
+<!-- Escritorio (abajo, alineados con el nav, centrados igual que todo el sidebar) -->
+<div class="hidden md:flex gap-8 text-3xl text-gray-500 absolute bottom-10 left-1/2 transform -translate-x-1/2">
+  <a target="_blank" href="https://github.com/JosMigGarLop" class="hover:text-white transition-colors">
+    <i class="fab fa-github"></i>
+  </a>
+  <a target="_blank" href="https://www.linkedin.com/in/josmigarlop/" class="hover:text-white transition-colors">
+    <i class="fab fa-linkedin"></i>
+  </a>
+  <a target="_blank" href="https://codepen.io/JosMigGarLop" class="hover:text-white transition-colors">
+    <i class="fab fa-codepen"></i>
+  </a>
+  <a href="mailto:josmgarlop@gmail.com" class="hover:text-white transition-colors">
+    <i class="fas fa-envelope"></i>
+  </a>
+</div>
+
+
+
+
+
+
+  </aside>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="w-full md:w-[60%] min-h-screen px-6 sm:px-12 md:px-16 py-12 md:py-24 max-w-5xl mx-auto font-sans text-gray-300">
+
+    <!-- ==================== ABOUT ==================== -->
+    <section id="about" class="fade-in mb-32">
+      <div class="space-y-4 text-sm sm:text-base leading-relaxed max-w-3xl">
+
+        <!-- Introducción profesional -->
+        <p>
+          <span class="text-white font-semibold">
+            {{ currentLang === 'es' ? 'Desarrollador Web Full Stack' : 'Full Stack Web Developer' }}
+          </span>
+          {{ currentLang === 'es'
+            ? ' con experiencia en Angular, Spring Boot y creación de aplicaciones web completas. Competente en APIs REST, Microservicios, bases de datos SQL y NoSQL, contenedores con Docker, CI/CD con Jenkins y despliegue con Nginx y Kubernetes. Experto en diseñar interfaces modernas y responsivas usando Tailwind CSS y Bootstrap.'
+            : ' with hands-on experience in Angular, Spring Boot, and building full-stack web applications. Skilled in RESTful APIs, Microservices, SQL and NoSQL databases, containerization with Docker, CI/CD with Jenkins, and deployment using Nginx and Kubernetes. Experienced in crafting modern and responsive interfaces using Tailwind CSS and Bootstrap.'
+          }}
+        </p>
+
+        <!-- Experiencia previa como chef -->
+        <p>
+          {{ currentLang === 'es'
+            ? 'Trabajé más de una década como chef profesional, trabajando en cocinas de alto nivel tanto a nivel nacional como internacional, manteniendo estándares de calidad exigentes en entornos de alta presión. '
+            : 'I worked over a decade as a professional chef in high-level kitchens both nationally and internationally, maintaining high standards of quality in fast-paced environments. '
+          }}
+          <span class="text-white font-semibold">
+            {{ currentLang === 'es'
+              ? 'Esta experiencia fortaleció mi disciplina, organización y habilidades de trabajo en equipo'
+              : 'This experience strengthened my discipline, organization, and teamwork skills'
+            }}
+          </span>
+          {{ currentLang === 'es' ? ', que ahora aplico al desarrollo colaborativo de software.' : ', which I now apply to collaborative software projects.' }}
+        </p>
+
+        <!-- Pasión por el aprendizaje y código de calidad -->
+        <p>
+          {{ currentLang === 'es'
+            ? 'Apasionado por el aprendizaje continuo, la mejora constante y la creación de código seguro, mantenible y escalable. '
+            : 'Passionate about continuous learning, improvement, and writing secure, maintainable, and scalable code. '
+          }}
+          <span class="text-white font-semibold">
+            {{ currentLang === 'es' ? 'Abierto a nuevos desafíos y comprometido en aportar valor' : 'Open to new challenges and eager to contribute value' }}
+          </span>
+          {{ currentLang === 'es' ? ' en proyectos reales.' : ' in real-world projects.' }}
+        </p>
+
+        <!-- Hobbies -->
+        <p>
+          {{ currentLang === 'es'
+            ? 'Fuera del ámbito tecnológico, disfruto jugar a videojuegos, practicar deporte, ver cine y explorar oportunidades de crecimiento personal y profesional.'
+            : 'Outside of tech, I enjoy playing video games, sports, watching movies, and exploring personal and professional growth opportunities.'
+          }}
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ==================== EXPERIENCE ==================== -->
+    <section id="experience" class="fade-in mb-32">
+      <div class="space-y-6">
+        <app-experience-item
+          *ngFor="let exp of experiencesDisplayed"
+          [period]="exp.period"
+          [role]="exp.role"
+          [company]="exp.company"
+          [description]="exp.description"
+          [techs]="exp.techs"
+          [isDimmed]="hoveredExp !== null && hoveredExp !== exp"
+          (mouseenter)="hoveredExp = exp"
+          (mouseleave)="hoveredExp = null">
+        </app-experience-item>
+      </div>
+
+      <!-- Descargar CV -->
+      <div class="mt-8">
+        <a href="assets/resume.pdf" target="_blank"
+           class="inline-flex items-center font-semibold text-gray-300 transition-colors duration-200 group hover:text-[#4AB5BD]">
+          {{ currentLang === 'es' ? 'Descargar CV completo' : 'Download full CV' }}
+          <span class="inline-block transform transition-transform duration-300 group-hover:translate-x-2 ml-1">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0L13.5 19.5M21 12H3" />
+            </svg>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ==================== PROJECTS ==================== -->
+    <section id="projects" class="fade-in mb-32">
+      <div class="space-y-8 sm:space-y-12">
+        <app-project-card
+          *ngFor="let p of projectsDisplayed"
+          [title]="p.title"
+          [description]="p.description"
+          [image]="p.image"
+          [techs]="p.techs"
+          [link]="p.link"
+          [isDimmed]="hoveredProject !== null && hoveredProject !== p"
+          (mouseEnter)="hoveredProject = p"
+          (mouseLeave)="hoveredProject = null">
+        </app-project-card>
+      </div>
+
+      <!-- Ver todos los proyectos -->
+      <div class="mt-8">
+        <a routerLink="/archive"
+           class="inline-flex items-center font-semibold text-gray-300 transition-colors duration-200 group hover:text-[#4AB5BD]">
+          {{ currentLang === 'es' ? 'Ver todos los proyectos' : 'View Full Project Archive' }}
+          <span class="inline-block transform transition-transform duration-300 group-hover:translate-x-2 ml-1">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0L13.5 19.5M21 12H3" />
+            </svg>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="mt-32 text-center">
+      <p class="text-sm text-gray-500 leading-relaxed">
+        {{ currentLang === 'es' ? 'Construido con ' : 'Built with ' }}
+        <a href="https://angular.dev" target="_blank" class="font-medium text-gray-400 hover:text-[#7BEAF0] transition underline underline-offset-2">Angular</a>
+        + 
+        <a href="https://tailwindcss.com" target="_blank" class="font-medium text-gray-400 hover:text-[#7BEAF0] transition underline underline-offset-2">Tailwind CSS</a>
+        {{ currentLang === 'es' ? ' • Desplegado en ' : ' • Deployed on ' }}
+        <a href="https://vercel.com" target="_blank" class="font-medium text-gray-400 hover:text-[#7BEAF0] transition underline underline-offset-2">Vercel</a>
+      </p>
+    </footer>
+
+  </main>
+
+</div>
