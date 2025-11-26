@@ -141,14 +141,21 @@ export class HomeComponent implements AfterViewInit {
     setTimeout(() => this.onScroll(), 100);
   }
 
-  /** MÉTODO PARA DESCARGAR CV CON GOOGLE ANALYTICS */
-  downloadCV() {
-    this.ga.event('download_cv', { method: 'PDF' });
-    setTimeout(() => {
-      window.open('assets/JoseMiguelGarciaLopez_CV_DesarrolladorWeb.pdf', '_blank');
-    }, 100);
-    return false;
-  }
+/** MÉTODO PARA DESCARGAR CV SEGÚN IDIOMA CON GOOGLE ANALYTICS */
+downloadCV() {
+  this.ga.event('download_cv', { method: 'PDF' });
+
+  // Elegir archivo según idioma actual
+  const cvFile = this.currentLang === 'es'
+    ? 'assets/JoseMiguel_GarciaLopez_FullStack_Java_Angular_ES_2025.pdf'
+    : 'assets/JoseMiguel_GarciaLopez_FullStack_Java_Angular_EN_2025.pdf';
+
+  setTimeout(() => {
+    window.open(cvFile, '_blank');
+  }, 100);
+
+  return false;
+}
 
   updateLanguage(lang: 'en' | 'es') {
     this.experiencesDisplayed = this.rawExperiences.map(e => ({
