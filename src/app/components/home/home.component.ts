@@ -84,13 +84,12 @@ export class HomeComponent implements AfterViewInit {
           en: 'Full stack application for managing online orders. Backend deployed on Render, frontend on Vercel. Backend developed with Java, Spring Boot, Spring Data JPA, PostgreSQL, Swagger, Docker, and JUnit 5. Frontend built with Angular, TypeScript, Tailwind CSS, RxJS, Karma & Jasmine, and Node.js.',
           es: 'Aplicación Full-Stack para gestionar pedidos online. Backend desplegado en Render, frontend en Vercel. Backend desarrollado con Java, Spring Boot, Spring Data JPA, PostgreSQL, Swagger, Docker y JUnit 5. Frontend construido con Angular, TypeScript, Tailwind CSS, RxJS, Karma & Jasmine y Node.js.'
         },
-    image: 'assets/OrderProNueva.png',
+    image: 'assets/OrderProBox.png',
     techs: [
       'Java', 'Spring Boot', 'Spring Data JPA', 'PostgreSQL', 'Swagger', 'Docker', 'JUnit 5',
       'Angular', 'TypeScript', 'Tailwind CSS', 'RxJS', 'Karma & Jasmine', 'Node.js'
     ],
-    link: 'https://github.com/JosMigGarLop/backend_order_manager',
-    live: 'https://frontendordermanager.vercel.app/'
+    link: 'https://frontendordermanager.vercel.app/'
   },
     {
       title: { en: 'MyOutfit', es: 'MyOutfit' },
