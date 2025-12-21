@@ -1,4 +1,4 @@
-// Componente Archive
+
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -12,6 +12,23 @@ import { RouterModule } from '@angular/router';
 export class ArchiveComponent {
   // Lista de proyectos
   projects = [
+    
+{
+      year: '2025',
+      title: 'OrderPro - Backend',
+      madeAt: '',
+      builtWith: ['Java', 'Spring Boot', 'Spring Data JPA', 'PostgreSQL', 'Swagger', 'Docker', 'JUnit 5'],
+      link: 'https://github.com/JosMigGarLop/backend_order_manager',
+      live: 'https://frontendordermanager.vercel.app/' 
+    },
+    {
+      year: '2025',
+      title: 'OrderPro - Frontend',
+      madeAt: '',
+      builtWith: ['Angular', 'TypeScript', 'Tailwind CSS', 'RxJS', 'Karma & Jasmine', 'Node.js'],
+      link: 'https://github.com/JosMigGarLop/frontend_order_manager',
+      live: 'https://frontendordermanager.vercel.app/' 
+    },
     {
       year: '2025',
       title: 'MyOutfit',
@@ -40,6 +57,5 @@ export class ArchiveComponent {
   builtWith: ['Spring Boot', 'Java', 'RabbitMQ', 'JWT', 'Docker', 'API Gateway', 'MariaDB', 'MongoDB', 'Microservices', 'REST API'],
   link: 'https://github.com/JosMigGarLop/MicroserviciosRabbitMQAPICloudGateway'
 }
-
   ];
 }

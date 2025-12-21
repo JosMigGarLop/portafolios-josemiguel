@@ -1,4 +1,3 @@
-// src/app/services/google-analytics.service.ts
 import { Injectable } from '@angular/core';
 
 declare function gtag(command: 'config' | 'event', targetId: string, params?: any): void;

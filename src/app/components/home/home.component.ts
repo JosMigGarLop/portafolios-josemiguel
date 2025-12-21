@@ -78,6 +78,20 @@ export class HomeComponent implements AfterViewInit {
 
   // PROYECTOS
   private rawProjects = [
+      {
+    title: { en: 'OrderPro', es: 'OrderPro' },
+        description: {
+          en: 'Full stack application for managing online orders. Backend deployed on Render, frontend on Vercel. Backend developed with Java, Spring Boot, Spring Data JPA, PostgreSQL, Swagger, Docker, and JUnit 5. Frontend built with Angular, TypeScript, Tailwind CSS, RxJS, Karma & Jasmine, and Node.js.',
+          es: 'Aplicación Full-Stack para gestionar pedidos online. Backend desplegado en Render, frontend en Vercel. Backend desarrollado con Java, Spring Boot, Spring Data JPA, PostgreSQL, Swagger, Docker y JUnit 5. Frontend construido con Angular, TypeScript, Tailwind CSS, RxJS, Karma & Jasmine y Node.js.'
+        },
+    image: 'assets/OrderProNueva.png',
+    techs: [
+      'Java', 'Spring Boot', 'Spring Data JPA', 'PostgreSQL', 'Swagger', 'Docker', 'JUnit 5',
+      'Angular', 'TypeScript', 'Tailwind CSS', 'RxJS', 'Karma & Jasmine', 'Node.js'
+    ],
+    link: 'https://github.com/JosMigGarLop/backend_order_manager',
+    live: 'https://frontendordermanager.vercel.app/'
+  },
     {
       title: { en: 'MyOutfit', es: 'MyOutfit' },
       description: {
@@ -114,7 +128,7 @@ export class HomeComponent implements AfterViewInit {
         en: 'Microservices backend implemented with Spring Boot for managing supermarket tickets. Features asynchronous communication with RabbitMQ, JWT authentication with RS256, MongoDB for notifications, MariaDB for relational data, API Gateway, and Docker deployment. Includes modular services for users, tickets, notifications, and supermarkets with secure and scalable architecture.',
         es: 'Backend con microservicios en Spring Boot para la gestión de tickets de supermercados. Implementa comunicación asíncrona con RabbitMQ, autenticación JWT con RS256, MongoDB para notificaciones, MariaDB para datos relacionales, API Gateway y despliegue con Docker. Incluye servicios modulares para usuarios, tickets, notificaciones y supermercados con arquitectura segura y escalable.'
       },
-      image: 'assets/DWESMicroservices2.jpg',
+      image: 'assets/Microservicios.png',
       techs: ['Spring Boot', 'Java', 'RabbitMQ', 'JWT', 'Docker', 'API Gateway', 'MariaDB', 'MongoDB', 'Microservices', 'REST API'],
       link: 'https://github.com/JosMigGarLop/MicroserviciosRabbitMQAPICloudGateway'
     }
