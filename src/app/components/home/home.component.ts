@@ -40,6 +40,20 @@ export class HomeComponent implements AfterViewInit {
 
   // EXPERIENCIA PROFESIONAL
   private rawExperiences = [
+    
+    {
+  period: { en: 'Jul 2025 — Present', es: 'Jul 2025 — Actualidad' },
+  role: { 
+    en: 'Web Developer', 
+    es: 'Desarrollador Web' 
+  },
+  company: { en: 'Sojetel', es: 'Sojetel' },
+  description: {
+    en: 'Development and maintenance of internal web applications focused on improving operational processes. Implementation of REST APIs and backend logic using Java and Spring Boot, development of frontend interfaces with Angular and TypeScript, and integration with relational databases such as MySQL and MariaDB.',
+    es: 'Desarrollo y mantenimiento de aplicaciones web internas orientadas a la mejora de procesos operativos. Implementación de APIs REST y lógica backend con Java y Spring Boot, desarrollo de interfaces frontend con Angular y TypeScript, e integración con bases de datos relacionales como MySQL y MariaDB.'
+  },
+  techs: ['Java', 'Spring Boot', 'Angular', 'TypeScript', 'REST APIs', 'MySQL', 'MariaDB']
+},
     {
       period: { en: 'Mar 2025 — Jun 2025', es: 'Mar 2025 — Jun 2025' },
       role: { en: 'Full Stack Developer', es: 'Desarrollador Full Stack' },
@@ -65,6 +79,19 @@ export class HomeComponent implements AfterViewInit {
       ]
     },
     {
+      period: { en: 'Nov 2018 — Mar 2019', es: 'Nov 2018 — Mar 2019' },
+      role: {
+        en: 'IT Support Assistant',
+        es: 'Ayudante de Sistemas'
+      },
+      company: { en: 'Sojetel', es: 'Sojetel' },
+      description: {
+        en: 'Provided internal technical support, managing incidents and assisting in the maintenance of systems and internal tools.',
+        es: 'Soporte técnico interno, gestionando incidencias y apoyando en el mantenimiento de sistemas y herramientas internas.'
+      },
+      techs: ['IT Support', 'Systems Maintenance']
+    },
+    {
       period: { en: 'Oct 2014 — Sept 2024', es: 'Oct 2014 — Sept 2024' },
       role: { en: 'Chef', es: 'Chef' },
       company: { en: 'Notable Hotels & Restaurants', es: 'Hoteles y Restaurantes Destacados' },
@@ -78,19 +105,19 @@ export class HomeComponent implements AfterViewInit {
 
   // PROYECTOS
   private rawProjects = [
-      {
-    title: { en: 'OrderPro', es: 'OrderPro' },
-        description: {
-          en: 'Full stack application for managing online orders. Backend deployed on Render, frontend on Vercel. Backend developed with Java, Spring Boot, Spring Data JPA, PostgreSQL, Swagger, Docker, and JUnit 5. Frontend built with Angular, TypeScript, Tailwind CSS, RxJS, Karma & Jasmine, and Node.js.',
-          es: 'Aplicación Full-Stack para gestionar pedidos online. Backend desplegado en Render, frontend en Vercel. Backend desarrollado con Java, Spring Boot, Spring Data JPA, PostgreSQL, Swagger, Docker y JUnit 5. Frontend construido con Angular, TypeScript, Tailwind CSS, RxJS, Karma & Jasmine y Node.js.'
-        },
-    image: 'assets/OrderProBox.png',
-    techs: [
-      'Java', 'Spring Boot', 'Spring Data JPA', 'PostgreSQL', 'Swagger', 'Docker', 'JUnit 5',
-      'Angular', 'TypeScript', 'Tailwind CSS', 'RxJS', 'Karma & Jasmine', 'Node.js'
-    ],
-    link: 'https://frontendordermanager.vercel.app/'
-  },
+    {
+      title: { en: 'OrderPro', es: 'OrderPro' },
+      description: {
+        en: 'Full stack application for managing online orders. Backend deployed on Render, frontend on Vercel. Backend developed with Java, Spring Boot, Spring Data JPA, PostgreSQL, Swagger, Docker, and JUnit 5. Frontend built with Angular, TypeScript, Tailwind CSS, RxJS, Karma & Jasmine, and Node.js.',
+        es: 'Aplicación Full-Stack para gestionar pedidos online. Backend desplegado en Render, frontend en Vercel. Backend desarrollado con Java, Spring Boot, Spring Data JPA, PostgreSQL, Swagger, Docker y JUnit 5. Frontend construido con Angular, TypeScript, Tailwind CSS, RxJS, Karma & Jasmine y Node.js.'
+      },
+      image: 'assets/OrderProBox.png',
+      techs: [
+        'Java', 'Spring Boot', 'Spring Data JPA', 'PostgreSQL', 'Swagger', 'Docker', 'JUnit 5',
+        'Angular', 'TypeScript', 'Tailwind CSS', 'RxJS', 'Karma & Jasmine', 'Node.js'
+      ],
+      link: 'https://frontendordermanager.vercel.app/'
+    },
     {
       title: { en: 'MyOutfit', es: 'MyOutfit' },
       description: {
@@ -154,21 +181,21 @@ export class HomeComponent implements AfterViewInit {
     setTimeout(() => this.onScroll(), 100);
   }
 
-/** MÉTODO PARA DESCARGAR CV SEGÚN IDIOMA CON GOOGLE ANALYTICS */
-downloadCV() {
-  this.ga.event('download_cv', { method: 'PDF' });
+  /** MÉTODO PARA DESCARGAR CV SEGÚN IDIOMA CON GOOGLE ANALYTICS */
+  downloadCV() {
+    this.ga.event('download_cv', { method: 'PDF' });
 
-  // Elegir archivo según idioma actual
-  const cvFile = this.currentLang === 'es'
-    ? 'assets/JoseMiguel_GarciaLopez_FullStack_Java_Angular_ES_2025.pdf'
-    : 'assets/JoseMiguel_GarciaLopez_FullStack_Java_Angular_EN_2025.pdf';
+    // Elegir archivo según idioma actual
+    const cvFile = this.currentLang === 'es'
+      ? 'assets/JoseMiguel_GarciaLopez_FullStack_Java_Angular_ES_2025.pdf'
+      : 'assets/JoseMiguel_GarciaLopez_FullStack_Java_Angular_EN_2025.pdf';
 
-  setTimeout(() => {
-    window.open(cvFile, '_blank');
-  }, 100);
+    setTimeout(() => {
+      window.open(cvFile, '_blank');
+    }, 100);
 
-  return false;
-}
+    return false;
+  }
 
   updateLanguage(lang: 'en' | 'es') {
     this.experiencesDisplayed = this.rawExperiences.map(e => ({
